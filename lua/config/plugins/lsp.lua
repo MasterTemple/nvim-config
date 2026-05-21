@@ -227,17 +227,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-vim.pack.add({
-	{
-		src = "https://github.com/simrat39/symbols-outline.nvim",
-		version = "564ee65",
-		opts = {
-			position = "right",
-			relative_width = false,
-			width = 48,
-		},
-	},
-})
+-- TODO: Do I need this if I have LspSaga outline?
+-- vim.pack.add({
+-- 	{
+-- 		src = "https://github.com/simrat39/symbols-outline.nvim",
+-- 		version = "564ee65",
+-- 	},
+-- })
+--
+-- require("symbols-outline.nvim").setup({
+-- 	position = "right",
+-- 	relative_width = false,
+-- 	width = 48,
+-- })
 
 -- Diagnostic Config
 -- See :help vim.diagnostic.Opts

@@ -1,4 +1,4 @@
-local open_cmd = ""
+local open_cmd = nil
 
 if vim.g.personal then
 	open_cmd = "uwsm app -- brave --new-window --ozone-platform=wayland --app=%s"
@@ -13,4 +13,8 @@ vim.pack.add({
 			open_cmd = open_cmd,
 		},
 	},
+})
+
+require("typst-preview").setup({
+	open_cmd = open_cmd,
 })

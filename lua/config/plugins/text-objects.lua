@@ -12,12 +12,12 @@ vim.pack.add({
 	{
 		src = "https://github.com/dhruvasagar/vim-table-mode",
 		version = "bb02530",
-		lazy = false,
-		keys = {
-			{ mode = "n", "<leader>ta", "<cmd>TableModeRealign<CR>", { desc = "[T]able Mode [A]lign" } },
-		},
 	},
 })
+
+require("vim-table-mode").setup()
+
+vim.keymap.set("n", "<leader>ta", "<cmd>TableModeRealign<CR>", { desc = "[T]able Mode [A]lign" })
 
 vim.pack.add({
 	{
