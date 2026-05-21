@@ -1,4 +1,9 @@
 local files = {
+	-- Must be first for plugins that depend on it
+	"telescope",
+	"lsp",
+	"treesitter",
+
 	-- "autopairs",
 	-- "better-escape",
 	-- "comment",
@@ -25,10 +30,8 @@ local files = {
 	-- "todo-comments",
 	-- "typst",
 	-- "visual-multi",
-	"lsp",
+	"comments",
 	"rust",
-	"telescope",
-	"treesitter",
 	"which-key",
 }
 

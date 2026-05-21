@@ -7,7 +7,7 @@ end
 ----------
 
 map("Y", "v$hy", "Yank to the end of the line")
-map("<leader>/", "gcc", "Toggle line-wise comment")
+-- map("<leader>/", "gcc", "Toggle line-wise comment")
 
 map("<M-k>", ":m .-2<CR>", "Move up")
 map("<M-j>", ":m .+1<CR>", "Move down")
