@@ -15,8 +15,6 @@ vim.pack.add({
 	},
 })
 
-require("vim-table-mode").setup()
-
 vim.keymap.set("n", "<leader>ta", "<cmd>TableModeRealign<CR>", { desc = "[T]able Mode [A]lign" })
 
 vim.pack.add({
