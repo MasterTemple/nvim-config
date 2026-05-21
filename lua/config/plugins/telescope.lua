@@ -1,0 +1,192 @@
+-- [[ Fuzzy Finder (files, lsp, etc) ]]
+--
+-- Telescope is a fuzzy finder that comes with a lot of different things that
+-- it can fuzzy find! It's more than just a "file finder", it can search
+-- many different aspects of Neovim, your workspace, LSP, and more!
+--
+-- There are lots of other alternative pickers (like snacks.picker, or fzf-lua)
+-- so feel free to experiment and see what you like!
+--
+-- The easiest way to use Telescope, is to start by doing something like:
+--  :Telescope help_tags
+--
+-- After running this command, a window will open up and you're able to
+-- type in the prompt window. You'll see a list of `help_tags` options and
+-- a corresponding preview of the help.
+--
+-- Two important keymaps to use while in Telescope are:
+--  - Insert mode: <c-/>
+--  - Normal mode: ?
+--
+-- This opens a window that shows you all of the keymaps for the current
+-- Telescope picker. This is really useful to discover what Telescope can
+-- do as well as how to actually do it!
+
+---@type (string|vim.pack.Spec)[]
+local telescope_plugins = {
+	-- Will not longer be need after https://github.com/nvim-telescope/telescope.nvim/pull/3647
+	{
+		src = "https://github.com/nvim-lua/plenary.nvim",
+		version = "74b06c6",
+	},
+	{
+		src = "https://github.com/nvim-telescope/telescope.nvim",
+		version = "7d32479",
+	},
+	{
+		src = "https://github.com/nvim-telescope/telescope-ui-select.nvim",
+		version = "6e51d7d",
+	},
+}
+if vim.fn.executable("make") == 1 then
+	table.insert(telescope_plugins, {
+		src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+		version = "b25b749",
+	})
+end
+
+-- NOTE: You can install multiple plugins at once
+vim.pack.add(telescope_plugins)
+
+-- See `:help telescope` and `:help telescope.setup()`
+require("telescope").setup({
+	-- You can put your default mappings / updates / etc. in here
+	--  All the info you're looking for is in `:help telescope.setup()`
+	--
+	-- defaults = {
+	--   mappings = {
+	--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+	--   },
+	-- },
+	-- pickers = {}
+	extensions = {
+		["ui-select"] = { require("telescope.themes").get_dropdown() },
+	},
+})
+
+-- Enable Telescope extensions if they are installed
+pcall(require("telescope").load_extension, "fzf")
+pcall(require("telescope").load_extension, "ui-select")
+
+-- See `:help telescope.builtin`
+local builtin = require("telescope.builtin")
+
+-- Add Telescope-based LSP pickers when an LSP attaches to a buffer.
+-- If you later switch picker plugins, this is where to update these mappings.
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("telescope-lsp-attach", { clear = true }),
+	callback = function(event)
+		local buf = event.buf
+
+		-- Find references for the word under your cursor.
+		vim.keymap.set("n", "<leader>lr", builtin.lsp_references, { buffer = buf, desc = "[L]SP [R]eferences" })
+
+		-- Jump to the implementation of the word under your cursor.
+		-- Useful when your language has ways of declaring types without an actual implementation.
+		vim.keymap.set(
+			"n",
+			"<leader>li",
+			builtin.lsp_implementations,
+			{ buffer = buf, desc = "[L]SP [I]mplementation" }
+		)
+
+		-- TODO: Technically not a telescope keybind
+		vim.keymap.set(
+			"n",
+			"<leader>lfd",
+			vim.diagnostic.open_float,
+			{ buffer = buf, desc = "[L]SP [F]loating [D]iagnostic" }
+		)
+
+		-- Jump to the definition of the word under your cursor.
+		-- This is where a variable was first declared, or where a function is defined, etc.
+		-- To jump back, press <C-t>.
+		vim.keymap.set("n", "<leader>ld", builtin.lsp_definitions, { buffer = buf, desc = "[L]SP [D]efinitions" })
+
+		-- Fuzzy find all the symbols in your current document.
+		-- Symbols are things like variables, functions, types, etc.
+		vim.keymap.set(
+			"n",
+			"<leader>lds",
+			builtin.lsp_document_symbols,
+			{ buffer = buf, desc = "[L]SP [D]ocument [S]ymbols" }
+		)
+
+		-- Fuzzy find all the symbols in your current workspace.
+		-- Similar to document symbols, except searches over your entire project.
+		vim.keymap.set(
+			"n",
+			-- NOTE: I don't need lws for now, but lds is really easy to type; I could try lw
+			"<leader>ls",
+			builtin.lsp_dynamic_workspace_symbols,
+			{ buffer = buf, desc = "[L]SP Workspace [S]ymbols" }
+		)
+
+		-- Jump to the type of the word under your cursor.
+		-- Useful when you're not sure what type a variable is and you want to see
+		-- the definition of its *type*, not where it was *defined*.
+		vim.keymap.set(
+			"n",
+			"<leader>lt",
+			builtin.lsp_type_definitions,
+			{ buffer = buf, desc = "[L]SP [T]ype Definition" }
+		)
+	end,
+})
+
+-- Meta Searches
+vim.keymap.set("n", "<leader>;", builtin.builtin, { desc = "Open Telescope" })
+vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
+vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
+vim.keymap.set("n", "<leader>sc", builtin.commands, { desc = "[S]earch [C]ommands" })
+
+-- LSP
+vim.keymap.set("n", "<leader>ss", builtin.lsp_document_symbols, { desc = "[S]earch Document [S]ymbols" })
+vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+
+-- Locations
+vim.keymap.set("n", "<leader>sm", builtin.marks, { desc = "[S]earch [M]arks" })
+vim.keymap.set("n", "<leader><tab>", builtin.buffers, { desc = "[Tab] Find existing buffers" })
+
+-- Files
+vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>sa", function()
+	builtin.find_files({ follow = true, no_ignore = true, hidden = true })
+end, { desc = "[S]earch [A]ll Files" })
+vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+
+vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
+vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+
+-- Current file
+vim.keymap.set("n", "<leader><leader>", function()
+	builtin.current_buffer_fuzzy_find({
+		layout_config = {
+			width = 0.8,
+			height = 0.6,
+		},
+		previewer = false,
+	})
+end, { desc = "Fuzzily search in current buffer" })
+
+-- Open Files
+vim.keymap.set("n", "<leader>se", function()
+	builtin.live_grep({
+		grep_open_files = true,
+		prompt_title = "Live Grep in Open Files",
+	})
+end, { desc = "[S]earch Open Files in [E]ditor" })
+
+-- Neovim config
+vim.keymap.set("n", "<leader>sn", function()
+	builtin.find_files({ cwd = vim.fn.stdpath("config") })
+end, { desc = "[S]earch [N]eovim files" })
+
+-- Personal
+if vim.g.personal then
+	-- Obsidian
+	vim.keymap.set("n", "<leader>so", function()
+		builtin.find_files({ cwd = "~/Obsidian/" })
+	end, { desc = "[S]earch [O]bsidian files" })
+end
