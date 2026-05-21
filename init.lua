@@ -5,9 +5,13 @@ vim.opt.rtp:prepend(vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":h"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.personal = false
-if os.getenv("USER"):match("temple") then
+local username = vim.env.USER or vim.env.USERNAME
+if username:match("temple") then
 	vim.g.personal = true
+	require("config.personal")
+else
+	vim.g.personal = false
+	require("config.work")
 end
 vim.g.work = not vim.g.personal
 
