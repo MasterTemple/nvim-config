@@ -38,7 +38,7 @@ local telescope_plugins = {
 		version = "6e51d7d",
 	},
 }
-if vim.fn.executable("make") == 1 then
+if vim.fn.executable("make") == 1 or vim.fn.executable("cmake") == 1 then
 	table.insert(telescope_plugins, {
 		src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 		version = "b25b749",
@@ -65,7 +65,8 @@ require("telescope").setup({
 })
 
 -- Enable Telescope extensions if they are installed
-pcall(require("telescope").load_extension, "fzf")
+-- pcall(require("telescope").load_extension, "fzf")
+require("telescope").load_extension("fzf") -- I want to know that fzf-native works
 pcall(require("telescope").load_extension, "ui-select")
 
 -- See `:help telescope.builtin`
