@@ -6,7 +6,6 @@ local files = {
 
 	-- "autopairs",
 	-- "better-escape",
-	-- "comment",
 	-- "conform",
 	-- -- "debug",
 	-- -- "emmet",
@@ -14,7 +13,7 @@ local files = {
 	-- "flash",
 	-- "git-signs",
 	-- "guttermarks",
-	-- "indent",
+	"indent",
 	-- -- "lint",
 	-- "lsp-saga",
 	-- "markview",
