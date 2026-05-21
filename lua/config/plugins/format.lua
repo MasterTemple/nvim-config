@@ -15,7 +15,7 @@ require("conform").setup({
 			python = true,
 		}
 		if enabled_filetypes[vim.bo[bufnr].filetype] then
-			return { timeout_ms = 500 }
+			return { timeout_ms = 2000 }
 		else
 			return nil
 		end

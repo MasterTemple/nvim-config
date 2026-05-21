@@ -4,7 +4,7 @@ local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
--- CopyFile: Copy path to current file to clipboard
+-- CopyFilePath: Copy path to current file to clipboard
 local function copy_current_file()
 	local current_file = vim.fn.expand("%:p")
 	if current_file == "" then
@@ -14,9 +14,9 @@ local function copy_current_file()
 	vim.fn.setreg("+", current_file)
 	print("Copied file path: " .. current_file)
 end
-vim.api.nvim_create_user_command("CopyFile", copy_current_file, { desc = "Copy path to current file to clipboard" })
+vim.api.nvim_create_user_command("CopyFilePath", copy_current_file, { desc = "Copy path to current file to clipboard" })
 
--- CopyDirectory: Copy path to current directory to clipboard
+-- CopyDirectoryPath: Copy path to current directory to clipboard
 local function copy_current_directory()
 	local current_file = vim.fn.expand("%:p")
 	if current_file == "" then
@@ -28,7 +28,7 @@ local function copy_current_directory()
 	print("Copied directory path: " .. dir)
 end
 vim.api.nvim_create_user_command(
-	"CopyDirectory",
+	"CopyDirectoryPath",
 	copy_current_directory,
 	{ desc = "Copy path to current directory to clipboard" }
 )
