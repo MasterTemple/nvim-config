@@ -2,7 +2,7 @@
 
 vim.g.have_nerd_font = true
 
-vim.o.conceallevel = 2
+vim.o.conceallevel = 1
 
 -- Line numbers
 vim.o.number = true
