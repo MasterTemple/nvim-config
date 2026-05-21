@@ -1,7 +1,7 @@
 vim.pack.add({
 	{
 		src = "https://github.com/tjdevries/present.nvim",
-		version = "3aab214",
+		version = "ce22dfa",
 	},
 })
 

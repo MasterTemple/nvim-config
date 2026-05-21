@@ -26,6 +26,10 @@ vim.pack.add({
 		-- version = vim.version.range("1.*"),
 		version = "35e3923",
 	},
+	{
+		src = "https://github.com/saghen/blink.lib",
+		version = "f29d8ba",
+	},
 })
 
 -- Neovide can actually accept CTRL+ENTER

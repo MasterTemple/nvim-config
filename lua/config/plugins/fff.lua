@@ -2,18 +2,25 @@ vim.pack.add({
 	{
 		src = "https://github.com/dmtrKovalenko/fff.nvim",
 		version = "16b34f5",
-		opts = {
-			debug = {
-				enabled = true,
-				show_scores = true,
-			},
-		},
 	},
 })
 
-require("fff")
--- downloads a prebuilt binary or falls back to cargo build
--- require("fff.download").download_or_build_binary()
+vim.api.nvim_create_autocmd("PackChanged", {
+	callback = function(ev)
+		local name, kind = ev.data.spec.name, ev.data.kind
+		if name == "fff.nvim" and (kind == "install" or kind == "update") then
+			if not ev.data.active then
+				vim.cmd.packadd("fff.nvim")
+			end
+			require("fff.download").download_or_build_binary()
+		end
+	end,
+})
+
+vim.g.fff = {
+	lazy_sync = true,
+	debug = { enabled = true, show_scores = true },
+}
 
 vim.keymap.set("n", "<leader>ff", function()
 	require("fff").find_files()
