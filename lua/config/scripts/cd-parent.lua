@@ -18,30 +18,12 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 local function change_directory_picker()
-	-- Use fd or find to get directories
-	-- local subcommand = table.concat({
-	--   'find . -type d',
-	--   "-not -path '*/\\.*'",
-	--   "-not -path '*/target/*'",
-	--   "-not -path '*/node_modules/*'",
-	-- }, ' ')
-
-	-- local handle = io.popen(subcommand)
-
-	-- local subcommand = table.concat({
-	--   'find . -type d (',
-	--   -- "-name '\\.*' -o",
-	--   "-name 'target' -o",
-	--   "-name 'node_modules'",
-	--   ') -prune -type d -print',
-	-- }, ' ')
-
-	-- I still see target as an option
+	-- Use fd to get directories
 	local subcommand = table.concat({
-		"find . -type d",
-		"! -path '*/\\.*'",
-		"! -path '*/target/*'",
-		"! -path '*/node_modules/*'",
+		"fd . -type d",
+		"-E '*/\\.*'",
+		"-E '*/target/*'",
+		"-E '*/node_modules/*'",
 	}, " ")
 
 	local handle = io.popen(subcommand)
