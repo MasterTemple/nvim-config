@@ -7,6 +7,7 @@ local files = {
 	"autocomplete",
 	"better-escape",
 	"comments",
+	"dot-repeat",
 	"fff",
 	"files",
 	"flash",

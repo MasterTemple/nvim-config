@@ -84,6 +84,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- TODO: Should I make these conform to `L` as the first key?
 		vim.keymap.set("n", "<leader>sr", builtin.lsp_references, { buffer = buf, desc = "[S]each [R]eferences (LSP)" })
 
+		vim.keymap.set("n", "gd", builtin.lsp_references, { buffer = buf, desc = "[G]oto [D]efinition (LSP)" })
+		vim.keymap.set("n", "gt", builtin.lsp_type_definitions, { buffer = buf, desc = "[G]oto [T]ype (LSP)" })
+
 		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics (LSP)" })
 
 		-- Jump to the implementation of the word under your cursor.
