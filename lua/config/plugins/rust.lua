@@ -15,3 +15,5 @@ vim.keymap.set(
 	'<cmd>lua require("ferris.methods.expand_macro")() <CR>',
 	{ desc = "Expand Rust macro recursively" }
 )
+
+vim.keymap.set("n", "<leader><BS>", "<cmd>RustLsp parentModule<CR>", { desc = "Go to parent module" })

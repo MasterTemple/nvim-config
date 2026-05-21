@@ -1,6 +1,6 @@
 -- See `:help vim.o`
 
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 vim.o.conceallevel = 2
 

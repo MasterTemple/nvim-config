@@ -226,3 +226,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("<leader><enter>", ":Lspsaga code_action<CR>", "LSP Code Action", { "n", "x" })
 	end,
 })
+
+vim.pack.add({
+	{
+		src = "https://github.com/simrat39/symbols-outline.nvim",
+		version = "564ee65",
+		opts = {
+			position = "right",
+			relative_width = false,
+			width = 48,
+		},
+	},
+})
