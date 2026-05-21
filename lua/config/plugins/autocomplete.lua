@@ -110,7 +110,10 @@ require("blink.cmp").setup({
 	--
 	-- See `:help blink-cmp-config-fuzzy` for more information
 	-- fuzzy = { implementation = "lua" },
+
+	-- TODO: https://github.com/saghen/blink.cmp/pull/2526
 	fuzzy = { implementation = "prefer_rust_with_warning" },
+	-- fuzzy = { implementation = "rust" },
 
 	-- Shows a signature help window while you type arguments for a function
 	signature = { enabled = true },
