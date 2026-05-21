@@ -8,10 +8,8 @@ vim.g.maplocalleader = " "
 local username = vim.env.USER or vim.env.USERNAME
 if username:match("temple") then
 	vim.g.personal = true
-	require("config.personal")
 else
 	vim.g.personal = false
-	require("config.work")
 end
 vim.g.work = not vim.g.personal
 
@@ -23,3 +21,10 @@ require("config.neovide")
 require("config.options")
 require("config.plugins")
 require("config.scripts")
+
+-- I want to load this last
+if vim.g.personal then
+	require("config.personal")
+else
+	require("config.work")
+end
