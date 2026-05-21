@@ -13,12 +13,12 @@ local files = {
 	-- -- "lint",
 	-- "lsp-saga",
 	-- "markview",
-	-- "mkmv",
+	"mkmv",
 	-- "mini",
 	-- "neo-tree",
 	-- "oil",
 	-- "present",
-	-- "surrounded",
+	"surrounded",
 	-- "symbol-outline",
 	-- "table-mode",
 	-- "tmux",
@@ -31,6 +31,7 @@ local files = {
 	"treesitter",
 	"which-key",
 }
+
 for _, file in pairs(files) do
 	require("config.plugins." .. file)
 end
