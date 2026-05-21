@@ -26,9 +26,9 @@ local files = {
 	-- "todo-comments",
 	-- "typst",
 	-- "visual-multi",
-	-- "which-key",
 	"telescope",
 	"treesitter",
+	"which-key",
 }
 for _, file in pairs(files) do
 	require("config.plugins." .. file)

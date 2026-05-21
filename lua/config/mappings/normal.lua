@@ -35,45 +35,45 @@ map("<C-k>", "<C-w><C-k>", "Move focus to the upper window")
 -- Case --
 ----------
 
--- snake -> Pascal
-map(
-	"<leader>csp",
-	"\"aciw<C-c>:let @a=substitute(@a, '\\l', '\\u&', '')|let @a=substitute(@a, '\\v_(\\l)', '\\u\\1', 'g')|norm \"ap<CR>",
-	"snake_case -> PascalCase"
-)
--- PascalCase -> snake_case
-map(
-	"<leader>cps",
-	"\"aciw<C-c>:let @a=substitute(@a, '\\u', '\\l\\0', '') | let @a=substitute(@a, '\\u', '_\\l\\0', 'g')|norm \"ap<CR>",
-	"`PascalCase` -> `snake_case`"
-)
--- camelCase -> snake_case
-map(
-	"<leader>ccs",
-	"\"aciw<C-c>:let @a=substitute(@a, '\\b\\u', '\\l\\0', '') | let @a=substitute(@a, '\\u', '_\\l\\0', 'g')|norm \"ap<CR>",
-	"`camelCase` -> `snake_case`"
-)
--- snake_case -> camelCase
-map(
-	"<leader>csc",
-	"\"aciw<C-c>:let @a=substitute(@a, '\\v_(\\l)', '\\u\\1', 'g')|norm \"ap<CR>",
-	"`snake_case` -> `camelCase`"
-)
--- snake_case -> PascalCase
-map(
-	"<leader>csp",
-	"\"aciw<C-c>:let @a=substitute(@a, '\\l', '\\u\\0', '') | let @a=substitute(@a, '\\v_(\\l)', '\\u\\1', 'g')|norm \"ap<CR>",
-	"`snake_case` -> `PascalCase`"
-)
--- PascalCase -> camelCase
-map(
-	"<leader>cpc",
-	"\"aciw<C-c>:let @a=substitute(@a, '\\u', '\\l\\0', '')|norm \"ap<CR>",
-	"`PascalCase` -> `camelCase`"
-)
--- camelCase -> PascalCase
-map(
-	"<leader>ccp",
-	"\"aciw<C-c>:let @a=substitute(@a, '\\l', '\\u\\0', '')|norm \"ap<CR>",
-	"`camelCase` -> `PascalCase`"
-)
+-- -- snake -> Pascal
+-- map(
+-- 	"<leader>csp",
+-- 	"\"aciw<C-c>:let @a=substitute(@a, '\\l', '\\u&', '')|let @a=substitute(@a, '\\v_(\\l)', '\\u\\1', 'g')|norm \"ap<CR>",
+-- 	"snake_case -> PascalCase"
+-- )
+-- -- PascalCase -> snake_case
+-- map(
+-- 	"<leader>cps",
+-- 	"\"aciw<C-c>:let @a=substitute(@a, '\\u', '\\l\\0', '') | let @a=substitute(@a, '\\u', '_\\l\\0', 'g')|norm \"ap<CR>",
+-- 	"`PascalCase` -> `snake_case`"
+-- )
+-- -- camelCase -> snake_case
+-- map(
+-- 	"<leader>ccs",
+-- 	"\"aciw<C-c>:let @a=substitute(@a, '\\b\\u', '\\l\\0', '') | let @a=substitute(@a, '\\u', '_\\l\\0', 'g')|norm \"ap<CR>",
+-- 	"`camelCase` -> `snake_case`"
+-- )
+-- -- snake_case -> camelCase
+-- map(
+-- 	"<leader>csc",
+-- 	"\"aciw<C-c>:let @a=substitute(@a, '\\v_(\\l)', '\\u\\1', 'g')|norm \"ap<CR>",
+-- 	"`snake_case` -> `camelCase`"
+-- )
+-- -- snake_case -> PascalCase
+-- map(
+-- 	"<leader>csp",
+-- 	"\"aciw<C-c>:let @a=substitute(@a, '\\l', '\\u\\0', '') | let @a=substitute(@a, '\\v_(\\l)', '\\u\\1', 'g')|norm \"ap<CR>",
+-- 	"`snake_case` -> `PascalCase`"
+-- )
+-- -- PascalCase -> camelCase
+-- map(
+-- 	"<leader>cpc",
+-- 	"\"aciw<C-c>:let @a=substitute(@a, '\\u', '\\l\\0', '')|norm \"ap<CR>",
+-- 	"`PascalCase` -> `camelCase`"
+-- )
+-- -- camelCase -> PascalCase
+-- map(
+-- 	"<leader>ccp",
+-- 	"\"aciw<C-c>:let @a=substitute(@a, '\\l', '\\u\\0', '')|norm \"ap<CR>",
+-- 	"`camelCase` -> `PascalCase`"
+-- )

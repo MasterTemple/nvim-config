@@ -20,7 +20,7 @@ local action_state = require("telescope.actions.state")
 local function change_directory_picker()
 	-- Use fd to get directories
 	local subcommand = table.concat({
-		"fd . -type d",
+		"fd . --type d",
 		"-E '*/\\.*'",
 		"-E '*/target/*'",
 		"-E '*/node_modules/*'",
@@ -65,5 +65,5 @@ local function change_directory_picker()
 		:find()
 end
 
-vim.keymap.set("n", "<leader>cp", change_to_parent, { desc = "[C]hange to [Parent] Directory" })
-vim.keymap.set("n", "<leader>cd", change_directory_picker, { desc = "[C]hange [D]irectory" })
+vim.keymap.set("n", "<leader>cdp", change_to_parent, { desc = "[C]hange [D]irectory to [Parent]" })
+vim.keymap.set("n", "<leader>cds", change_directory_picker, { desc = "[C]hange [D]irectory [S]earch" })
