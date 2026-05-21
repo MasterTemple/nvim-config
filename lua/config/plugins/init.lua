@@ -26,6 +26,7 @@ local files = {
 	-- "todo-comments",
 	-- "typst",
 	-- "visual-multi",
+	"lsp",
 	"telescope",
 	"treesitter",
 	"which-key",

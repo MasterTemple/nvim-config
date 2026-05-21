@@ -80,18 +80,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local buf = event.buf
 
 		-- Find references for the word under your cursor.
-		vim.keymap.set("n", "<leader>lr", builtin.lsp_references, { buffer = buf, desc = "[L]SP [R]eferences" })
+		-- vim.keymap.set("n", "<leader>lrf", builtin.lsp_references, { buffer = buf, desc = "[L]SP [R]e[F]erences" })
+		-- TODO: Should I make these conform to `L` as the first key?
+		vim.keymap.set("n", "<leader>sr", builtin.lsp_references, { buffer = buf, desc = "[S]each [R]eferences (LSP)" })
+
+		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics (LSP)" })
 
 		-- Jump to the implementation of the word under your cursor.
 		-- Useful when your language has ways of declaring types without an actual implementation.
 		vim.keymap.set(
 			"n",
-			"<leader>li",
+			"<leader>lim",
 			builtin.lsp_implementations,
-			{ buffer = buf, desc = "[L]SP [I]mplementation" }
+			{ buffer = buf, desc = "[L]SP [Im]plementation" }
 		)
 
 		-- TODO: Technically not a telescope keybind
+		-- lid: LSP Info Diagnostic?
 		vim.keymap.set(
 			"n",
 			"<leader>lfd",
@@ -102,15 +107,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Jump to the definition of the word under your cursor.
 		-- This is where a variable was first declared, or where a function is defined, etc.
 		-- To jump back, press <C-t>.
-		vim.keymap.set("n", "<leader>ld", builtin.lsp_definitions, { buffer = buf, desc = "[L]SP [D]efinitions" })
+		vim.keymap.set("n", "<leader>ldf", builtin.lsp_definitions, { buffer = buf, desc = "[L]SP [D]e[F]initions" })
+
+		-- Jump to the type of the word under your cursor.
+		-- Useful when you're not sure what type a variable is and you want to see
+		-- the definition of its *type*, not where it was *defined*.
+		vim.keymap.set(
+			"n",
+			"<leader>ldt",
+			builtin.lsp_type_definitions,
+			{ buffer = buf, desc = "[L]SP [D]efinition: [T]ype" }
+		)
 
 		-- Fuzzy find all the symbols in your current document.
 		-- Symbols are things like variables, functions, types, etc.
 		vim.keymap.set(
 			"n",
-			"<leader>lds",
+			"<leader>lsd",
 			builtin.lsp_document_symbols,
-			{ buffer = buf, desc = "[L]SP [D]ocument [S]ymbols" }
+			{ buffer = buf, desc = "[L]SP [S]ymbols: [D]ocument" }
 		)
 
 		-- Fuzzy find all the symbols in your current workspace.
@@ -118,19 +133,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set(
 			"n",
 			-- NOTE: I don't need lws for now, but lds is really easy to type; I could try lw
-			"<leader>ls",
+			"<leader>lsw",
 			builtin.lsp_dynamic_workspace_symbols,
-			{ buffer = buf, desc = "[L]SP Workspace [S]ymbols" }
-		)
-
-		-- Jump to the type of the word under your cursor.
-		-- Useful when you're not sure what type a variable is and you want to see
-		-- the definition of its *type*, not where it was *defined*.
-		vim.keymap.set(
-			"n",
-			"<leader>lt",
-			builtin.lsp_type_definitions,
-			{ buffer = buf, desc = "[L]SP [T]ype Definition" }
+			{ buffer = buf, desc = "[L]SP [S]ymbols: [W]orkspace" }
 		)
 	end,
 })
@@ -139,12 +144,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.keymap.set("n", "<leader>;", builtin.builtin, { desc = "Open Telescope" })
 vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
+vim.keymap.set("n", "<leader>sp", builtin.resume, { desc = "[S]earch [P]revious" })
 vim.keymap.set("n", "<leader>sc", builtin.commands, { desc = "[S]earch [C]ommands" })
-
--- LSP
-vim.keymap.set("n", "<leader>ss", builtin.lsp_document_symbols, { desc = "[S]earch Document [S]ymbols" })
-vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- Locations
 vim.keymap.set("n", "<leader>sm", builtin.marks, { desc = "[S]earch [M]arks" })
