@@ -52,3 +52,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 vim.opt.lazyredraw = true
 vim.opt.magic = true
+
+-- Do not wrap text (by default)
+vim.opt.wrap = false

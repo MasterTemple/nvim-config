@@ -66,4 +66,5 @@ local function change_directory_picker()
 end
 
 vim.keymap.set("n", "<leader>cdp", change_to_parent, { desc = "[C]hange [D]irectory to [Parent]" })
+vim.keymap.set("n", "<leader>cd.", change_to_parent, { desc = "[C]hange [D]irectory to Parent ([.])" })
 vim.keymap.set("n", "<leader>cds", change_directory_picker, { desc = "[C]hange [D]irectory [S]earch" })
