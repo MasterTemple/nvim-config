@@ -17,9 +17,9 @@ vim.pack.add({
 
 vim.keymap.set("n", "<leader>ta", "<cmd>TableModeRealign<CR>", { desc = "[T]able Mode [A]lign" })
 
-vim.pack.add({
-	{
-		src = "https://github.com/mg979/vim-visual-multi",
-		version = "a6975e7",
-	},
-})
+-- vim.pack.add({
+-- 	{
+-- 		src = "https://github.com/mg979/vim-visual-multi",
+-- 		version = "a6975e7",
+-- 	},
+-- })
