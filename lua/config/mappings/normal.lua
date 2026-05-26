@@ -1,5 +1,5 @@
 local map = function(keys, func, desc)
-	vim.keymap.set("n", keys, func, { desc = desc })
+	vim.keymap.set("n", keys, func, { desc = desc, silent = true })
 end
 
 ----------
@@ -21,7 +21,12 @@ map("<S-l>", vim.cmd.bnext, "Next tab")
 map("<Esc>", vim.cmd.nohlsearch, "Clear search highlights")
 
 -- Diagnostics quickfix
-map("<leader>q", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
+-- map("<leader>q", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
+map("<leader>q", function()
+	vim.diagnostic.setqflist({
+		severity = vim.diagnostic.severity.ERROR,
+	})
+end, "Open diagnostic [Q]uickfix list")
 
 -- Window navigation
 map("<C-h>", "<C-w><C-h>", "Move focus to the left window")

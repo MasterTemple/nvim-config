@@ -1,5 +1,5 @@
 local map = function(keys, func, desc)
-	vim.keymap.set("v", keys, func, { desc = desc })
+	vim.keymap.set("v", keys, func, { desc = desc, silent = true })
 end
 
 -- Search visual selection
