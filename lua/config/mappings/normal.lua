@@ -22,11 +22,17 @@ map("<Esc>", vim.cmd.nohlsearch, "Clear search highlights")
 
 -- Diagnostics quickfix
 -- map("<leader>q", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
-map("<leader>q", function()
+map("<leader>qe", function()
 	vim.diagnostic.setqflist({
 		severity = vim.diagnostic.severity.ERROR,
 	})
-end, "Open diagnostic [Q]uickfix list")
+end, "[Q]uickfix [E]rrors")
+
+map("<leader>qw", function()
+	vim.diagnostic.setqflist({
+		severity = vim.diagnostic.severity.WARN,
+	})
+end, "[Q]uickfix [W]arnings")
 
 -- Window navigation
 map("<C-h>", "<C-w><C-h>", "Move focus to the left window")

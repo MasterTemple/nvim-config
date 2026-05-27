@@ -14,6 +14,7 @@ local files = {
 	"format",
 	"git",
 	"guttermarks",
+	"harpoon",
 	"indent",
 	"markdown",
 	"mini",
